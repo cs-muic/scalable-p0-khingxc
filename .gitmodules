@@ -1,0 +1,6 @@
+[submodule "frontend/scalable-ums-frontend"]
+	path = frontend/scalable-ums-frontend
+	url = https://github.com/cs-muic/scalable-ums-frontend.git
+[submodule "backend/scalable-ums-backend"]
+	path = backend/scalable-ums-backend
+	url = https://github.com/cs-muic/scalable-ums-backend.git
