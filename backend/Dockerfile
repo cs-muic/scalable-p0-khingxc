@@ -1,7 +1,11 @@
-FROM openjdk:11
-ADD . /app
+FROM maven:3.8.1-openjdk-11-slim AS builder
+# ADD . /app
 WORKDIR /app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN mvn package
-RUN java -jar jarfilename.jar
+COPY /scalable-ums-backend/pom.xml ./
+COPY /scalable-ums-backend/src ./
+RUN mvn -f ./pom.xml clean package
+
+FROM openjdk:11-jre-slim
+COPY --from=build /home/app/target/ums-backend-1.0-SNAPSHOT.jar /usr/local/lib/ums-backend.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/ums-backend.jar"]

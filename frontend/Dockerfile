@@ -2,7 +2,7 @@ FROM node:16 as builder
 CMD mkdir /app
 WORKDIR /app
 COPY /scalable-ums-frontend/package.json /scalable-ums-frontend/yarn.lock ./
-COPY /scalable-ums-frontend ./
+COPY /scalable-ums-frontend/src ./
 RUN yarn install
 RUN yarn build
 

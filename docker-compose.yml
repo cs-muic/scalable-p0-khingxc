@@ -1,0 +1,36 @@
+#TO FIX
+version: "2"
+service:
+  mariadb:
+    image: mariadb
+    container_name:
+    environment:
+      MARIADB_ROOT_PASSWORD: devpass      
+      MARIADB_PASSWORD: devpass
+      MARIADB_USERNAME: dev
+      MARIADB_DATABASE: ums
+    volumes:
+      - ./mariadb:/var/lib/mysql
+      - ./schema:/docker-entrypoint-initdb.d 
+    networks:
+      - ums-back-office
+  ums-frontend:
+    image: ums-frontend
+    build: ./ums-frontend
+    networks:
+      - ums-user-facing
+  ums-backend:
+    image: ums-backend
+    ports: 3306:3306
+    depends_on: mariadb
+    environment:
+      - UMS_DB_NAME: ums
+      - UMS_DB_USERNAME: dev
+      - UMS_DB_PASSWORD: devpass
+      - UMS_DB_PORT: 3306
+      - UMS_DB_IP: localhost
+  ums-proxy:
+volumes:
+networks:
+  - ums-user-facing
+  - ums-back-office
