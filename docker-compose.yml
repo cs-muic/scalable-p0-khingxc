@@ -21,7 +21,6 @@ service:
       - ums-user-facing
   ums-backend:
     image: ums-backend
-    ports: 3306:3306
     depends_on: mariadb
     environment:
       - UMS_DB_NAME: ums
