@@ -1,4 +1,4 @@
-FROM openJDK:11
+FROM openjdk:11
 ADD . /app
 WORKDIR /app
 COPY .mvn/ .mvn
