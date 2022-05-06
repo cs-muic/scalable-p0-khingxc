@@ -5,10 +5,10 @@ service:
     image: mariadb
     container_name:
     environment:
-      MARIADB_ROOT_PASSWORD: devpass      
-      MARIADB_PASSWORD: devpass
-      MARIADB_USERNAME: dev
-      MARIADB_DATABASE: ums
+      - MARIADB_ROOT_PASSWORD: devpass      
+      - MARIADB_PASSWORD: devpass
+      - MARIADB_USERNAME: dev
+      - MARIADB_DATABASE: ums
     volumes:
       - ./mariadb:/var/lib/mysql
       - ./schema:/docker-entrypoint-initdb.d 

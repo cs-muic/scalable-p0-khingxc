@@ -1,5 +1,5 @@
 FROM maven:3.8.1-openjdk-11-slim AS builder
-# ADD . /app
+CMD mkdir /app
 WORKDIR /app
 COPY /scalable-ums-backend/pom.xml ./
 COPY /scalable-ums-backend/src ./
