@@ -2,8 +2,9 @@ version: "3"
 services:
   mariadb:
     image: mariadb
+    restart: always
     ports: 
-      - "3306:3306"
+      - 3306:3306
     environment:
       MARIADB_ROOT_PASSWORD: devpass      
       MARIADB_PASSWORD: devpass
@@ -28,14 +29,14 @@ services:
       UMS_DB_USERNAME: dev
       UMS_DB_PASSWORD: devpass
       UMS_DB_PORT: 3306
-      UMS_DB_IP: localhost
+      UMS_DB_IP: mariadb
     networks: 
       - ums-user-facing
       - ums-back-office
   ums-proxy:
     image: nginx:1.21
     ports:
-      - "7887:80"
+      - 7887:80
     depends_on:
       - ums-frontend
       - ums-backend
