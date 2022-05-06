@@ -5,7 +5,7 @@ COPY /scalable-ums-backend/pom.xml ./
 COPY /scalable-ums-backend/src ./
 RUN mvn -f ./pom.xml clean package
 
-FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/ums-backend-1.0-SNAPSHOT.jar /usr/local/lib/ums-backend.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/ums-backend.jar"]
+FROM openjdk:11-jre-slim
+COPY --from=build /app/target/ ./
+ENTRYPOINT ["java","-jar","ums-1.0.jar"]
